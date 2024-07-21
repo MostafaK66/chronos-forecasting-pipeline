@@ -10,6 +10,12 @@ class DataPreprocessor:
         df = pd.read_csv(self.file_path)
         df = df.rename(columns={'unique_id': 'item_id', 'ds': 'timestamp'})
         df['timestamp'] = pd.to_datetime(df['timestamp'])
+        required_columns = ['item_id', 'timestamp', 'y']
+        for col in required_columns:
+            if col not in df.columns:
+                raise ValueError(f"Missing required column: {col}")
         df = TimeSeriesDataFrame(df)
         return df
+
+
 
