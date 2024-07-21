@@ -8,18 +8,21 @@ class DataPlotter:
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
-    def plot_time_series(self, df, file_name='time_series_plot.png'):
+    def plot_time_series(self, train_data, test_data, file_name='time_series_plot.png'):
         plt.figure(figsize=(10, 6))
 
-        item_ids = df.index.get_level_values('item_id').unique()
+        item_ids = train_data.index.get_level_values('item_id').unique()
 
         for item_id in item_ids:
-            subset = df.xs(item_id, level='item_id')
-            plt.plot(subset.index, subset['y'], label=f'Item {item_id}')
+            train_subset = train_data.xs(item_id, level='item_id')
+            test_subset = test_data.xs(item_id, level='item_id')
+
+            plt.plot(train_subset.index, train_subset['target'], label=f'Train Item {item_id}')
+            plt.plot(test_subset.index, test_subset['target'], label=f'Test Item {item_id}', linestyle='--')
 
         plt.xlabel('Timestamp')
         plt.ylabel('Value')
-        plt.title('Time Series Data')
+        plt.title('Train and Test Time Series Data')
         plt.legend()
         plt.grid(True)
 
@@ -27,4 +30,12 @@ class DataPlotter:
         plt.savefig(output_path)
         plt.close()
         print(f'Plot saved to {output_path}')
+
+
+
+
+
+
+
+
 
