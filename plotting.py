@@ -10,9 +10,12 @@ class DataPlotter:
 
     def plot_time_series(self, df, file_name='time_series_plot.png'):
         plt.figure(figsize=(10, 6))
-        for item_id in df['item_id'].unique():
-            subset = df[df['item_id'] == item_id]
-            plt.plot(subset['timestamp'], subset['value'], label=f'Item {item_id}')
+
+        item_ids = df.index.get_level_values('item_id').unique()
+
+        for item_id in item_ids:
+            subset = df.xs(item_id, level='item_id')
+            plt.plot(subset.index, subset['y'], label=f'Item {item_id}')
 
         plt.xlabel('Timestamp')
         plt.ylabel('Value')
@@ -24,3 +27,4 @@ class DataPlotter:
         plt.savefig(output_path)
         plt.close()
         print(f'Plot saved to {output_path}')
+
