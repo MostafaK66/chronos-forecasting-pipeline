@@ -6,7 +6,7 @@ class ChronosPredictor:
         self.predictor = None
 
     def fit_predictor(self, prediction_length, train_data):
-        self.predictor = TimeSeriesPredictor(prediction_length).fit(
+        self.predictor = TimeSeriesPredictor(prediction_length=prediction_length).fit(
             train_data, presets="chronos_tiny"
 
         )

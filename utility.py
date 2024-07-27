@@ -25,14 +25,6 @@ class DataPreprocessor:
         df = TimeSeriesDataFrame(df)
         return df
 
-    def load_and_preprocess_from_url(self):
-        df_example = TimeSeriesDataFrame(
-            "https://autogluon.s3.amazonaws.com/datasets/timeseries/m4_hourly_tiny/train.csv"
-        )
-
-
-        return df_example
-
     def train_test_split(self, df, prediction_length):
-        train_data, test_data = df.train_test_split(prediction_length)
+        train_data, test_data = df.train_test_split(prediction_length=prediction_length)
         return train_data, test_data
