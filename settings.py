@@ -18,3 +18,4 @@ CUSTOM_HYPERPARAMETERS = {
         "optimizer": space.Categorical("adam", "sgd", "adamw"),
     }
 }
+HYPERPARAMETER_TUNING_TYPES = {"scheduler": "local", "searcher": "auto"}

@@ -22,6 +22,7 @@ def main():
         train_data=train_data,
         model_size=settings.MODEL_SIZE,
         custom_parameters=settings.CUSTOM_HYPERPARAMETERS,
+        hyperparameter_tuning_type=settings.HYPERPARAMETER_TUNING_TYPES,
     )
     print("Predictor fitted successfully")
 
