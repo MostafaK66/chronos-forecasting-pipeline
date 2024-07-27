@@ -13,7 +13,7 @@ class ChronosPredictor:
             "batch_size": 16,
             "device": "cpu",
         }
-    },  presets=model_size, refit_full=False
+    },  presets=model_size, refit_full=False, skip_model_selection=False
 
         )
         return self.predictor
