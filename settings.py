@@ -2,6 +2,8 @@ from autogluon.common import space
 
 FILE_PATH = "input/medium_views_published_holidays.csv"
 PREDICTION_LENGTH = 100
+NUM_VALIDATION_WINDOW = 6
+REFIT_EVERY_N_WINDOWS = 2
 MODEL_SIZE = "chronos_tiny"
 
 CUSTOM_HYPERPARAMETERS = {
@@ -9,7 +11,7 @@ CUSTOM_HYPERPARAMETERS = {
         "model_path": "tiny",
         "batch_size": space.Int(8, 16),
         "learning_rate": space.Categorical(1e-3, 1e-4, 1e-5),
-        "num_train_epochs": space.Int(10, 50),
+        "num_train_epochs": space.Int(10, 50, 100),
         "dropout_rate": space.Categorical(0.1, 0.2, 0.3),
         "weight_decay": space.Categorical(1e-4, 1e-5, 1e-6),
         "early_stopping_patience": space.Int(5, 10),
