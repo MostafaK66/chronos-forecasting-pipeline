@@ -40,3 +40,16 @@ class ChronosPredictor:
             raise ValueError("No predictor found. Please fit the predictor first.")
 
         print(f"Best model saved to {self.save_path}")
+
+    def generate_leaderboard(self, output_dir="output", file_name="leaderboard.csv"):
+        if self.predictor is None:
+            raise ValueError("No predictor found. Please fit the predictor first.")
+
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+        leaderboard = self.predictor.leaderboard(display=False)
+        output_path = os.path.join(output_dir, file_name)
+        leaderboard.to_csv(output_path, index=False)
+        print(f"Leaderboard saved to {output_path}")
+        return leaderboard

@@ -25,6 +25,7 @@ def main():
         hyperparameter_tuning_type=settings.HYPERPARAMETER_TUNING_TYPES,
     )
     chronos_predictor.save_best_model()
+    chronos_predictor.generate_leaderboard()
 
 
 if __name__ == "__main__":
