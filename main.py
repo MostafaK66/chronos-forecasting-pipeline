@@ -15,7 +15,7 @@ def main():
         df=df, prediction_length=settings.PREDICTION_LENGTH
     )
     plotter.plot_time_series(
-        train_data=train_data, test_data=test_data, file_name="train_test_data_plot.png"
+        train_data=train_data, test_data=test_data, file_name="train_test_data_plot.pn"
     )
     chronos_predictor.fit_predictor(
         prediction_length=settings.PREDICTION_LENGTH,
