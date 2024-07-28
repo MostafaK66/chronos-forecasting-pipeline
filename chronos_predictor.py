@@ -1,11 +1,14 @@
+import os
+
 from autogluon.timeseries import TimeSeriesPredictor
 
 import settings
 
 
 class ChronosPredictor:
-    def __init__(self):
+    def __init__(self, save_path="bestModel"):
         self.predictor = None
+        self.save_path = save_path
 
     def fit_predictor(
         self,
@@ -15,7 +18,12 @@ class ChronosPredictor:
         custom_parameters,
         hyperparameter_tuning_type,
     ):
-        self.predictor = TimeSeriesPredictor(prediction_length=prediction_length).fit(
+        if not os.path.exists(self.save_path):
+            os.makedirs(self.save_path)
+
+        self.predictor = TimeSeriesPredictor(
+            prediction_length=prediction_length, path=self.save_path
+        ).fit(
             train_data,
             hyperparameters=custom_parameters,
             presets=model_size,
@@ -26,3 +34,9 @@ class ChronosPredictor:
             refit_every_n_windows=settings.REFIT_EVERY_N_WINDOWS,
         )
         return self.predictor
+
+    def save_best_model(self):
+        if self.predictor is None:
+            raise ValueError("No predictor found. Please fit the predictor first.")
+
+        print(f"Best model saved to {self.save_path}")
