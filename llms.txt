@@ -1,0 +1,10 @@
+# Chronos Forecasting Pipeline
+
+- `src/chronos_forecasting/config.py`: immutable TOML configuration.
+- `src/chronos_forecasting/data.py`: CSV normalization, validation, and splitting.
+- `src/chronos_forecasting/backend.py`: lazy AutoGluon integration boundary.
+- `src/chronos_forecasting/artifacts.py`: holdout evaluation and artifact writes.
+- `src/chronos_forecasting/plotting.py`: optional static forecast visualization.
+- `src/chronos_forecasting/service.py`: end-to-end orchestration.
+- `src/chronos_forecasting/cli.py`: thin command-line interface.
+- `tests/`: deterministic offline unit and integration tests.

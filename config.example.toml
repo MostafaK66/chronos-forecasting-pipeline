@@ -1,0 +1,30 @@
+[data]
+path = "input/medium_views_published_holidays.csv"
+delimiter = ","
+item_column = "unique_id"
+timestamp_column = "ds"
+target_column = "y"
+drop_columns = ["published", "is_holiday"]
+
+[forecast]
+prediction_length = 100
+num_val_windows = 6
+refit_every_n_windows = 2
+random_seed = 123
+eval_metric = "WQL"
+# time_limit_seconds = 3600
+
+[model]
+model_type = "Chronos"
+model_path = "bolt_tiny"
+batch_size = 32
+device = "auto"
+# preset = "medium_quality"
+
+[output]
+model_dir = "models/chronos"
+artifact_dir = "output"
+forecast_file = "forecast.csv"
+leaderboard_file = "leaderboard.csv"
+metrics_file = "metrics.json"
+plot_file = "forecast.png"
