@@ -1,0 +1,12 @@
+Chronos Forecasting Pipeline
+Copyright (c) 2026 MostafaK66
+
+This repository is a production-oriented continuation of the original private
+"chronos-with-autogluon" project by MostafaK66. The AutoGluon Chronos training,
+train/test plotting, model persistence, and leaderboard behavior formed the
+baseline for this restructuring.
+
+The original repository did not contain a license file. The owner has added the
+MIT License to this maintained version. AutoGluon, Chronos, Hugging Face model
+weights, and other dependencies retain their respective licenses and are not
+bundled with this repository.
